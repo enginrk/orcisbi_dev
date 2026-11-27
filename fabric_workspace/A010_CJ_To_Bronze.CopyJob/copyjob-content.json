@@ -1,0 +1,271 @@
+{
+  "properties": {
+    "jobMode": "Batch",
+    "source": {
+      "type": "AzureSqlTable",
+      "connectionSettings": {
+        "type": "AzureSqlDatabase",
+        "externalReferences": {
+          "connection": "150fe549-5bb4-4e38-8127-a7c942c56e5b"
+        }
+      }
+    },
+    "destination": {
+      "type": "LakehouseTable",
+      "connectionSettings": {
+        "type": "Lakehouse",
+        "typeProperties": {
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "artifactId": "7e158aca-e396-8044-4eec-332d2ed269a9",
+          "rootFolder": "Tables"
+        }
+      }
+    },
+    "policy": {
+      "timeout": "0.12:00:00",
+      "retry": 0
+    }
+  },
+  "activities": [
+    {
+      "id": "5ace6e89-2860-4db9-9ee5-a19b2c189d74",
+      "properties": {
+        "source": {
+          "datasetSettings": {
+            "schema": "src",
+            "table": "DIM_DATE"
+          },
+          "partitionSettings": {
+            "partitionOption": "None"
+          }
+        },
+        "destination": {
+          "partitionOption": "None",
+          "writeBehavior": "Overwrite",
+          "datasetSettings": {
+            "schema": "src",
+            "table": "DIM_DATE"
+          },
+          "applyVOrder": false,
+          "enableTimestampNtz": false
+        },
+        "enableStaging": false,
+        "translator": {
+          "type": "TabularTranslator",
+          "mappings": [
+            {
+              "source": {
+                "name": "date",
+                "type": "DateTime",
+                "physicalType": "date"
+              },
+              "destination": {
+                "name": "date",
+                "physicalType": "date"
+              }
+            },
+            {
+              "source": {
+                "name": "year",
+                "type": "Int32",
+                "physicalType": "int"
+              },
+              "destination": {
+                "name": "year",
+                "physicalType": "integer"
+              }
+            },
+            {
+              "source": {
+                "name": "quarter",
+                "type": "Int32",
+                "physicalType": "int"
+              },
+              "destination": {
+                "name": "quarter",
+                "physicalType": "integer"
+              }
+            },
+            {
+              "source": {
+                "name": "month",
+                "type": "Int32",
+                "physicalType": "int"
+              },
+              "destination": {
+                "name": "month",
+                "physicalType": "integer"
+              }
+            },
+            {
+              "source": {
+                "name": "month_name",
+                "type": "String",
+                "physicalType": "nvarchar",
+                "length": "300"
+              },
+              "destination": {
+                "name": "month_name",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "is_month_end",
+                "type": "Boolean",
+                "physicalType": "bit"
+              },
+              "destination": {
+                "name": "is_month_end",
+                "physicalType": "boolean"
+              }
+            },
+            {
+              "source": {
+                "name": "is_quarter_end",
+                "type": "Boolean",
+                "physicalType": "bit"
+              },
+              "destination": {
+                "name": "is_quarter_end",
+                "physicalType": "boolean"
+              }
+            },
+            {
+              "source": {
+                "name": "is_year_end",
+                "type": "Boolean",
+                "physicalType": "bit"
+              },
+              "destination": {
+                "name": "is_year_end",
+                "physicalType": "boolean"
+              }
+            },
+            {
+              "source": {
+                "name": "is_snapshot",
+                "type": "Boolean",
+                "physicalType": "bit"
+              },
+              "destination": {
+                "name": "is_snapshot",
+                "physicalType": "boolean"
+              }
+            },
+            {
+              "source": {
+                "name": "created_at",
+                "type": "DateTime",
+                "physicalType": "datetime2",
+                "precision": 0
+              },
+              "destination": {
+                "name": "created_at",
+                "physicalType": "timestamp"
+              }
+            },
+            {
+              "source": {
+                "name": "updated_at",
+                "type": "DateTime",
+                "physicalType": "datetime2",
+                "precision": 0
+              },
+              "destination": {
+                "name": "updated_at",
+                "physicalType": "timestamp"
+              }
+            },
+            {
+              "source": {
+                "name": "load_ts",
+                "type": "DateTime",
+                "physicalType": "datetime2",
+                "precision": 0
+              },
+              "destination": {
+                "name": "load_ts",
+                "physicalType": "timestamp"
+              }
+            }
+          ]
+        },
+        "typeConversionSettings": {
+          "typeConversion": {
+            "allowDataTruncation": true,
+            "treatBooleanAsNumber": false
+          }
+        }
+      }
+    },
+    {
+      "id": "fcc6c3e3-f425-4911-92d2-2dbd1ce864e5",
+      "properties": {
+        "source": {
+          "datasetSettings": {
+            "schema": "src",
+            "table": "DIM_END_REASON"
+          },
+          "partitionSettings": {
+            "partitionOption": "None"
+          }
+        },
+        "destination": {
+          "partitionOption": "None",
+          "writeBehavior": "Overwrite",
+          "datasetSettings": {
+            "schema": "src",
+            "table": "DIM_END_REASON"
+          },
+          "applyVOrder": false,
+          "enableTimestampNtz": false
+        },
+        "enableStaging": false,
+        "translator": {
+          "type": "TabularTranslator"
+        },
+        "typeConversionSettings": {
+          "typeConversion": {
+            "allowDataTruncation": true,
+            "treatBooleanAsNumber": false
+          }
+        }
+      }
+    },
+    {
+      "id": "e1e6a389-62e9-440c-b80f-9a8f6caf93a9",
+      "properties": {
+        "source": {
+          "datasetSettings": {
+            "schema": "src",
+            "table": "DIM_EVENT_TYPE"
+          },
+          "partitionSettings": {
+            "partitionOption": "None"
+          }
+        },
+        "destination": {
+          "partitionOption": "None",
+          "writeBehavior": "Overwrite",
+          "datasetSettings": {
+            "schema": "src",
+            "table": "DIM_EVENT_TYPE"
+          },
+          "applyVOrder": false,
+          "enableTimestampNtz": false
+        },
+        "enableStaging": false,
+        "translator": {
+          "type": "TabularTranslator"
+        },
+        "typeConversionSettings": {
+          "typeConversion": {
+            "allowDataTruncation": true,
+            "treatBooleanAsNumber": false
+          }
+        }
+      }
+    }
+  ]
+}

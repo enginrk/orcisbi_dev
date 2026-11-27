@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Lakehouse",
-    "displayName": "A300_LH_gold"
+    "type": "CopyJob",
+    "displayName": "A010_CJ_To_Bronze"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "73aa0ace-b334-a646-4e51-6bd7caf5b91a"
+    "logicalId": "3fa9c045-a128-baf9-4e5b-dfac98493455"
   }
 }
